@@ -16,6 +16,24 @@ import {
   Users,
 } from "lucide-react";
 
+export type GalleryItem = {
+  id: string;
+  caption: string;
+  category: string;
+};
+
+export const galleryItems: GalleryItem[] = [
+  { id: "gallery-1", caption: "Off-leash recall in the park", category: "Obedience" },
+  { id: "gallery-2", caption: "Confident greetings, no jumping", category: "Manners" },
+  { id: "gallery-3", caption: "Calm settle during dinner", category: "Behavior" },
+  { id: "gallery-4", caption: "Loose-leash city walk", category: "Leash Manners" },
+  { id: "gallery-5", caption: "Group class social skills", category: "Socialization" },
+  { id: "gallery-6", caption: "Puppy crate training win", category: "Puppy Foundations" },
+  { id: "gallery-7", caption: "Relaxed vet visit", category: "Behavior" },
+  { id: "gallery-8", caption: "Board & train graduation day", category: "Board & Train" },
+  { id: "gallery-9", caption: "Nose-to-nose dog introductions", category: "Reactivity" },
+];
+
 export const business = {
   name: "[Name] Dog Training",
   trainerName: "[Trainer Name]",

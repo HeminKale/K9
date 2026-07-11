@@ -1,8 +1,15 @@
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { About } from "@/components/sections/About";
+import { BeforeAfter } from "@/components/sections/BeforeAfter";
+import { Blog } from "@/components/sections/Blog";
+import { FAQ } from "@/components/sections/FAQ";
+import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Hero } from "@/components/sections/Hero";
+import { Pricing } from "@/components/sections/Pricing";
 import { Services } from "@/components/sections/Services";
+import { SuccessGallery } from "@/components/sections/SuccessGallery";
+import { Testimonials } from "@/components/sections/Testimonials";
 import { TrainingProcess } from "@/components/sections/TrainingProcess";
 import { WhyChooseUs } from "@/components/sections/WhyChooseUs";
 
@@ -37,13 +44,13 @@ export default function Home() {
         <WhyChooseUs />
         <Services />
         <TrainingProcess />
-        <PlaceholderSection id="before-after" label="Before &amp; After" />
-        <PlaceholderSection id="testimonials" label="Testimonials" tone="muted" />
-        <PlaceholderSection id="gallery" label="Success Gallery" />
-        <PlaceholderSection id="faq" label="FAQ" tone="muted" />
-        <PlaceholderSection id="pricing" label="Pricing" />
-        <PlaceholderSection id="blog" label="Blog" tone="muted" />
-        <PlaceholderSection id="final-cta" label="Let's Build a Better Relationship" />
+        <BeforeAfter />
+        <Testimonials />
+        <SuccessGallery />
+        <FAQ />
+        <Pricing />
+        <Blog />
+        <FinalCTA />
         <PlaceholderSection id="contact" label="Contact" tone="muted" />
       </main>
       <Footer />
