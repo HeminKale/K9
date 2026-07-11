@@ -2,6 +2,9 @@ import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { About } from "@/components/sections/About";
 import { Hero } from "@/components/sections/Hero";
+import { Services } from "@/components/sections/Services";
+import { TrainingProcess } from "@/components/sections/TrainingProcess";
+import { WhyChooseUs } from "@/components/sections/WhyChooseUs";
 
 type PlaceholderSectionProps = {
   id: string;
@@ -31,9 +34,9 @@ export default function Home() {
       <main className="flex-1">
         <Hero />
         <About />
-        <PlaceholderSection id="why-choose-us" label="Why Choose Us" tone="muted" />
-        <PlaceholderSection id="services" label="Services" />
-        <PlaceholderSection id="process" label="Training Process" tone="muted" />
+        <WhyChooseUs />
+        <Services />
+        <TrainingProcess />
         <PlaceholderSection id="before-after" label="Before &amp; After" />
         <PlaceholderSection id="testimonials" label="Testimonials" tone="muted" />
         <PlaceholderSection id="gallery" label="Success Gallery" />
