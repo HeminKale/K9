@@ -263,7 +263,7 @@ html[data-palette="navy"]:not(.dark) {
   }
 
   h1 {
-    font-size: clamp(2.125rem, 5.25vw, 3.875rem);
+    font-size: clamp(1.875rem, 4.5vw, 3.25rem);
   }
 
   h2 {

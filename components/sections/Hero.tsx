@@ -64,21 +64,21 @@ export function Hero() {
         className="absolute inset-0 bg-gradient-to-t from-primary-900/95 via-primary-900/60 to-primary-900/30"
       />
 
-      <div className="container relative z-10 py-16 sm:py-24 lg:py-32">
-        <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+      <div className="relative z-10 py-16 sm:py-24 lg:py-32">
+        <div className="container grid items-center gap-8 lg:grid-cols-2 lg:gap-16">
           {/* Image (Left) */}
           <motion.div
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            className="relative h-72 sm:h-96 lg:h-full lg:min-h-[500px]"
+            className="relative aspect-square w-full overflow-hidden rounded-2xl"
           >
             <Image
               src={images.hero.url}
               alt={images.hero.alt}
               fill
               priority
-              className="rounded-2xl object-cover"
+              className="object-cover"
             />
           </motion.div>
 

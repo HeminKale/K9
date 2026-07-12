@@ -59,17 +59,17 @@ export function Navbar() {
       <nav className="container flex h-16 items-center justify-between md:h-20">
         <Link
           href="/"
-          className="flex items-center gap-2 font-heading text-lg font-semibold text-primary-600 dark:text-primary-300"
+          className="flex items-center gap-2 font-heading font-semibold text-primary-600 dark:text-primary-300"
           onClick={() => setActiveTab(tabGroups[0].id)}
         >
           <Image
             src={images.logo.url}
             alt={images.logo.alt}
-            width={32}
-            height={32}
+            width={48}
+            height={48}
             className="rounded-full"
           />
-          <span className="hidden sm:inline">{business.name}</span>
+          <span className="text-sm sm:text-base">{business.name}</span>
         </Link>
 
         <TabsList className="hidden md:flex">
