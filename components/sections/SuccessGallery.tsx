@@ -14,10 +14,10 @@ const fadeUp = {
   }),
 };
 
-export function SuccessGallery() {
+export function SuccessGallery({ sectionId = "gallery" }: { sectionId?: string }) {
   return (
     <section
-      id="gallery"
+      id={sectionId}
       className="section-padding border-b border-secondary-300 bg-background dark:border-primary-800"
     >
       <div className="container">

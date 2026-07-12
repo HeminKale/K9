@@ -6,11 +6,14 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Menu, Moon, PawPrint, Sun, X } from "lucide-react";
 import { useTheme } from "next-themes";
 
+import { useActiveTab } from "@/components/TabsProvider";
 import { Button } from "@/components/ui/button";
+import { PaletteToggle } from "@/components/ui/PaletteToggle";
+import { TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { trackEvent } from "@/lib/analytics";
 import { business } from "@/lib/constants";
 import { useHasMounted } from "@/lib/hooks/useHasMounted";
-import { navLinks } from "@/lib/navLinks";
+import { tabGroups } from "@/lib/tabConfig";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
@@ -18,6 +21,7 @@ export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const mounted = useHasMounted();
   const { resolvedTheme, setTheme } = useTheme();
+  const { setActiveTab } = useActiveTab();
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 8);
@@ -33,6 +37,14 @@ export function Navbar() {
     };
   }, [isMobileMenuOpen]);
 
+  const goToContact = (ctaLocation: string) => {
+    setActiveTab("contact");
+    trackEvent("cta_click", {
+      cta_label: "Book Consultation",
+      cta_location: ctaLocation,
+    });
+  };
+
   return (
     <header
       className={cn(
@@ -46,25 +58,22 @@ export function Navbar() {
         <Link
           href="/"
           className="flex items-center gap-2 font-heading text-lg font-semibold text-primary-600 dark:text-primary-300"
-          onClick={() => setIsMobileMenuOpen(false)}
+          onClick={() => setActiveTab(tabGroups[0].id)}
         >
           <PawPrint className="size-6" aria-hidden="true" />
           <span>{business.name}</span>
         </Link>
 
-        <div className="hidden items-center gap-8 md:flex">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-sm font-medium text-text-600 transition-colors hover:text-primary-600 dark:text-text-200 dark:hover:text-primary-300"
-            >
-              {link.label}
-            </Link>
+        <TabsList className="hidden md:flex">
+          {tabGroups.map((group) => (
+            <TabsTrigger key={group.id} value={group.id}>
+              {group.label}
+            </TabsTrigger>
           ))}
-        </div>
+        </TabsList>
 
         <div className="hidden items-center gap-3 md:flex">
+          {mounted && <PaletteToggle />}
           {mounted && (
             <Button
               variant="ghost"
@@ -82,18 +91,7 @@ export function Navbar() {
             </Button>
           )}
           <Button
-            render={
-              <Link
-                href="/#contact"
-                onClick={() =>
-                  trackEvent("cta_click", {
-                    cta_label: "Book Consultation",
-                    cta_location: "navbar_desktop",
-                  })
-                }
-              />
-            }
-            nativeButton={false}
+            onClick={() => goToContact("navbar_desktop")}
             className="bg-cta-500 text-text-900 hover:bg-cta-600"
           >
             Book Consultation
@@ -124,35 +122,29 @@ export function Navbar() {
             transition={{ duration: 0.25, ease: "easeInOut" }}
             className="overflow-hidden border-t border-secondary-300 bg-background md:hidden dark:border-primary-700"
           >
-            <div className="container flex flex-col gap-4 py-6">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="text-base font-medium text-text-600 dark:text-text-200"
-                  onClick={() => setIsMobileMenuOpen(false)}
+            <div
+              className="container flex flex-col gap-4 py-6"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              {tabGroups.map((group) => (
+                <button
+                  key={group.id}
+                  type="button"
+                  onClick={() => setActiveTab(group.id)}
+                  className="text-left text-base font-medium text-text-600 dark:text-text-200"
                 >
-                  {link.label}
-                </Link>
+                  {group.label}
+                </button>
               ))}
               <Button
-                render={
-                  <Link
-                    href="/#contact"
-                    onClick={() => {
-                      setIsMobileMenuOpen(false);
-                      trackEvent("cta_click", {
-                        cta_label: "Book Consultation",
-                        cta_location: "navbar_mobile",
-                      });
-                    }}
-                  />
-                }
-                nativeButton={false}
+                onClick={() => goToContact("navbar_mobile")}
                 className="mt-2 w-full bg-cta-500 text-text-900 hover:bg-cta-600"
               >
                 Book Consultation
               </Button>
+              {mounted && (
+                <PaletteToggle className="w-full justify-center border border-secondary-300 dark:border-primary-700" />
+              )}
               {mounted && (
                 <Button
                   variant="outline"

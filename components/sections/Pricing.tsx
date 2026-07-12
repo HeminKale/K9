@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Check, Star } from "lucide-react";
 
+import { useActiveTab } from "@/components/TabsProvider";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { trackEvent } from "@/lib/analytics";
@@ -19,6 +20,8 @@ const fadeUp = {
 };
 
 export function Pricing() {
+  const { setActiveTab } = useActiveTab();
+
   return (
     <section
       id="pricing"
@@ -99,19 +102,14 @@ export function Pricing() {
                   </ul>
 
                   <Button
-                    render={
-                      <a
-                        href="#contact"
-                        onClick={() =>
-                          trackEvent("cta_click", {
-                            cta_label: "Request Pricing",
-                            cta_location: "pricing",
-                            plan_name: name,
-                          })
-                        }
-                      />
-                    }
-                    nativeButton={false}
+                    onClick={() => {
+                      setActiveTab("contact");
+                      trackEvent("cta_click", {
+                        cta_label: "Request Pricing",
+                        cta_location: "pricing",
+                        plan_name: name,
+                      });
+                    }}
                     className={cn(
                       "h-11 w-full rounded-lg text-sm font-semibold",
                       featured

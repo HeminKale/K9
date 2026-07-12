@@ -1,39 +1,27 @@
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
-import { About } from "@/components/sections/About";
-import { BeforeAfter } from "@/components/sections/BeforeAfter";
-import { Blog } from "@/components/sections/Blog";
-import { Contact } from "@/components/sections/Contact";
-import { FAQ } from "@/components/sections/FAQ";
-import { FinalCTA } from "@/components/sections/FinalCTA";
-import { Hero } from "@/components/sections/Hero";
-import { Pricing } from "@/components/sections/Pricing";
-import { Services } from "@/components/sections/Services";
-import { SuccessGallery } from "@/components/sections/SuccessGallery";
-import { Testimonials } from "@/components/sections/Testimonials";
-import { TrainingProcess } from "@/components/sections/TrainingProcess";
-import { WhyChooseUs } from "@/components/sections/WhyChooseUs";
+import { PaletteProvider } from "@/components/PaletteProvider";
+import { TabsProvider } from "@/components/TabsProvider";
+import { TabsContent } from "@/components/ui/tabs";
+import { sectionComponents, tabGroups } from "@/lib/tabConfig";
 
 export default function Home() {
   return (
-    <>
-      <Navbar />
-      <main className="flex-1">
-        <Hero />
-        <About />
-        <WhyChooseUs />
-        <Services />
-        <TrainingProcess />
-        <BeforeAfter />
-        <Testimonials />
-        <SuccessGallery />
-        <FAQ />
-        <Pricing />
-        <Blog />
-        <FinalCTA />
-        <Contact />
-      </main>
-      <Footer />
-    </>
+    <PaletteProvider>
+      <TabsProvider>
+        <Navbar />
+        <main className="flex-1">
+          {tabGroups.map((group) => (
+            <TabsContent key={group.id} value={group.id} keepMounted>
+              {group.sections.map((sectionId) => {
+                const SectionComponent = sectionComponents[sectionId];
+                return <SectionComponent key={sectionId} />;
+              })}
+            </TabsContent>
+          ))}
+        </main>
+        <Footer />
+      </TabsProvider>
+    </PaletteProvider>
   );
 }

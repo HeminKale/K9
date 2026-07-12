@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Award, ChevronDown, HeartHandshake, ShieldCheck, Star } from "lucide-react";
 
+import { useActiveTab } from "@/components/TabsProvider";
 import { Button } from "@/components/ui/button";
 import { trackEvent } from "@/lib/analytics";
 import { business } from "@/lib/constants";
@@ -35,6 +36,7 @@ const fadeUp = {
 };
 
 export function Hero() {
+  const { setActiveTab } = useActiveTab();
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -95,18 +97,13 @@ export function Hero() {
             className="mt-8 flex flex-col gap-4 sm:mt-10 sm:flex-row"
           >
             <Button
-              render={
-                <a
-                  href="#contact"
-                  onClick={() =>
-                    trackEvent("cta_click", {
-                      cta_label: "Book Consultation",
-                      cta_location: "hero",
-                    })
-                  }
-                />
-              }
-              nativeButton={false}
+              onClick={() => {
+                setActiveTab("contact");
+                trackEvent("cta_click", {
+                  cta_label: "Book Consultation",
+                  cta_location: "hero",
+                });
+              }}
               className="h-12 rounded-xl bg-cta-500 px-8 text-base font-semibold text-text-900 hover:bg-cta-600"
             >
               Book Consultation
