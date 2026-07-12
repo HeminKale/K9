@@ -55,110 +55,97 @@ export function Hero() {
       <motion.div
         aria-hidden="true"
         style={{ y: backgroundY }}
-        className="absolute inset-0 -top-[15%] h-[130%] bg-[radial-gradient(circle_at_30%_20%,var(--color-primary-500),var(--color-primary-800)_55%,var(--color-primary-900)_100%)]"
+        className="absolute inset-0 -top-[15%] h-[130%]"
       >
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_85%,color-mix(in_oklch,var(--color-cta-500)_35%,transparent),transparent_45%)]" />
+        <Image
+          src={images.hero.url}
+          alt=""
+          fill
+          priority
+          className="object-cover"
+        />
       </motion.div>
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-t from-primary-900/95 via-primary-900/60 to-primary-900/30"
+        className="absolute inset-0 bg-gradient-to-t from-primary-900/95 via-primary-900/70 to-primary-900/40"
       />
 
-      <div className="relative z-10 py-16 sm:py-24 lg:py-32">
-        <div className="container grid items-center gap-8 lg:grid-cols-2 lg:gap-16">
-          {/* Image (Left) */}
+      <div className="container relative z-10 py-24 sm:py-32">
+        <motion.div
+          variants={container}
+          initial="hidden"
+          animate="visible"
+          className="mx-auto flex max-w-3xl flex-col items-center text-center"
+        >
+          <motion.h1
+            variants={fadeUp}
+            className="text-secondary-50"
+          >
+            {business.tagline}
+          </motion.h1>
+
+          <motion.p
+            variants={fadeUp}
+            className="mt-4 max-w-xl text-lg text-secondary-100/85 sm:mt-6"
+          >
+            Whether you&apos;re starting with a new puppy or working through
+            tough behavior challenges, we&apos;ll build a training plan that
+            fits your dog and strengthens the bond you share.
+          </motion.p>
+
           <motion.div
             variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            className="relative aspect-square w-full overflow-hidden rounded-2xl"
+            className="mt-8 flex flex-col gap-4 sm:mt-10 sm:flex-row"
           >
-            <Image
-              src={images.hero.url}
-              alt={images.hero.alt}
-              fill
-              priority
-              className="object-cover"
-            />
+            <Button
+              onClick={() => {
+                setActiveTab("contact");
+                trackEvent("cta_click", {
+                  cta_label: "Book Consultation",
+                  cta_location: "hero",
+                });
+              }}
+              className="h-12 rounded-xl bg-cta-500 px-8 text-base font-semibold text-text-900 hover:bg-cta-600"
+            >
+              Book Consultation
+            </Button>
+            <Button
+              render={
+                <a
+                  href={business.phoneHref}
+                  onClick={() =>
+                    trackEvent("cta_click", {
+                      cta_label: "Call Now",
+                      cta_location: "hero",
+                    })
+                  }
+                />
+              }
+              nativeButton={false}
+              variant="outline"
+              className="h-12 rounded-xl border-secondary-100/40 bg-transparent px-8 text-base font-semibold text-secondary-50 hover:bg-secondary-50/10"
+            >
+              Call Now
+            </Button>
           </motion.div>
 
-          {/* Text & CTA (Right) */}
-          <motion.div
-            variants={container}
-            initial="hidden"
-            animate="visible"
-            className="flex flex-col justify-center text-left"
+          <motion.dl
+            variants={fadeUp}
+            className="mt-10 grid w-full grid-cols-2 gap-6 border-t border-secondary-100/20 pt-6 sm:mt-16 sm:grid-cols-4 sm:pt-10"
           >
-            <motion.h1
-              variants={fadeUp}
-              className="text-secondary-50"
-            >
-              {business.tagline}
-            </motion.h1>
-
-            <motion.p
-              variants={fadeUp}
-              className="mt-4 text-lg text-secondary-100/85 sm:mt-6"
-            >
-              Whether you&apos;re starting with a new puppy or working through
-              tough behavior challenges, we&apos;ll build a training plan that
-              fits your dog and strengthens the bond you share.
-            </motion.p>
-
-            <motion.div
-              variants={fadeUp}
-              className="mt-8 flex flex-col gap-4 sm:mt-10 sm:flex-row"
-            >
-              <Button
-                onClick={() => {
-                  setActiveTab("contact");
-                  trackEvent("cta_click", {
-                    cta_label: "Book Consultation",
-                    cta_location: "hero",
-                  });
-                }}
-                className="h-12 rounded-xl bg-cta-500 px-8 text-base font-semibold text-text-900 hover:bg-cta-600"
+            {trustBadges.map(({ icon: Icon, label }) => (
+              <div
+                key={label}
+                className="flex flex-col items-center gap-2 text-center"
               >
-                Book Consultation
-              </Button>
-              <Button
-                render={
-                  <a
-                    href={business.phoneHref}
-                    onClick={() =>
-                      trackEvent("cta_click", {
-                        cta_label: "Call Now",
-                        cta_location: "hero",
-                      })
-                    }
-                  />
-                }
-                nativeButton={false}
-                variant="outline"
-                className="h-12 rounded-xl border-secondary-100/40 bg-transparent px-8 text-base font-semibold text-secondary-50 hover:bg-secondary-50/10"
-              >
-                Call Now
-              </Button>
-            </motion.div>
-
-            <motion.dl
-              variants={fadeUp}
-              className="mt-10 grid grid-cols-2 gap-6 border-t border-secondary-100/20 pt-6 sm:mt-16 sm:grid-cols-4 sm:pt-10"
-            >
-              {trustBadges.map(({ icon: Icon, label }) => (
-                <div
-                  key={label}
-                  className="flex flex-col items-start gap-2"
-                >
-                  <Icon className="size-6 text-accent-300" aria-hidden="true" />
-                  <dt className="text-xs font-medium text-secondary-100/80 sm:text-sm">
-                    {label}
-                  </dt>
-                </div>
-              ))}
-            </motion.dl>
-          </motion.div>
-        </div>
+                <Icon className="size-6 text-accent-300" aria-hidden="true" />
+                <dt className="text-xs font-medium text-secondary-100/80 sm:text-sm">
+                  {label}
+                </dt>
+              </div>
+            ))}
+          </motion.dl>
+        </motion.div>
       </div>
 
       <motion.div
