@@ -1,6 +1,9 @@
+"use client";
+
 import { Phone } from "lucide-react";
 
 import { WhatsAppIcon } from "@/components/icons/SocialIcons";
+import { trackEvent } from "@/lib/analytics";
 import { business } from "@/lib/constants";
 
 export function FloatingButtons() {
@@ -11,6 +14,12 @@ export function FloatingButtons() {
       <a
         href={business.phoneHref}
         aria-label={`Call ${business.name}`}
+        onClick={() =>
+          trackEvent("cta_click", {
+            cta_label: "Call",
+            cta_location: "floating_button",
+          })
+        }
         className="flex size-14 items-center justify-center rounded-full bg-primary-600 text-white shadow-lg transition-transform hover:scale-105 hover:bg-primary-700"
       >
         <Phone className="size-6" />
@@ -20,6 +29,12 @@ export function FloatingButtons() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label={`Message ${business.name} on WhatsApp`}
+        onClick={() =>
+          trackEvent("cta_click", {
+            cta_label: "WhatsApp",
+            cta_location: "floating_button",
+          })
+        }
         className="flex size-14 items-center justify-center rounded-full bg-success-500 text-white shadow-lg transition-transform hover:scale-105 hover:bg-success-600"
       >
         <WhatsAppIcon className="size-6" />

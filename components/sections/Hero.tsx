@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { Award, ChevronDown, HeartHandshake, ShieldCheck, Star } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { trackEvent } from "@/lib/analytics";
 import { business } from "@/lib/constants";
 
 const trustBadges = [
@@ -21,8 +22,11 @@ const container = {
   },
 };
 
+// Opacity starts at 1 (not 0) so the hero headline — the page's LCP
+// candidate — paints immediately instead of waiting on the stagger/fade
+// animation to finish; only the slide-up motion is animated.
 const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 1, y: 24 },
   visible: {
     opacity: 1,
     y: 0,
@@ -91,14 +95,34 @@ export function Hero() {
             className="mt-8 flex flex-col gap-4 sm:mt-10 sm:flex-row"
           >
             <Button
-              render={<a href="#contact" />}
+              render={
+                <a
+                  href="#contact"
+                  onClick={() =>
+                    trackEvent("cta_click", {
+                      cta_label: "Book Consultation",
+                      cta_location: "hero",
+                    })
+                  }
+                />
+              }
               nativeButton={false}
               className="h-12 rounded-xl bg-cta-500 px-8 text-base font-semibold text-text-900 hover:bg-cta-600"
             >
               Book Consultation
             </Button>
             <Button
-              render={<a href={business.phoneHref} />}
+              render={
+                <a
+                  href={business.phoneHref}
+                  onClick={() =>
+                    trackEvent("cta_click", {
+                      cta_label: "Call Now",
+                      cta_location: "hero",
+                    })
+                  }
+                />
+              }
               nativeButton={false}
               variant="outline"
               className="h-12 rounded-xl border-secondary-100/40 bg-transparent px-8 text-base font-semibold text-secondary-50 hover:bg-secondary-50/10"

@@ -7,6 +7,7 @@ import { Menu, Moon, PawPrint, Sun, X } from "lucide-react";
 import { useTheme } from "next-themes";
 
 import { Button } from "@/components/ui/button";
+import { trackEvent } from "@/lib/analytics";
 import { business } from "@/lib/constants";
 import { useHasMounted } from "@/lib/hooks/useHasMounted";
 import { navLinks } from "@/lib/navLinks";
@@ -81,7 +82,17 @@ export function Navbar() {
             </Button>
           )}
           <Button
-            render={<Link href="/#contact" />}
+            render={
+              <Link
+                href="/#contact"
+                onClick={() =>
+                  trackEvent("cta_click", {
+                    cta_label: "Book Consultation",
+                    cta_location: "navbar_desktop",
+                  })
+                }
+              />
+            }
             nativeButton={false}
             className="bg-cta-500 text-text-900 hover:bg-cta-600"
           >
@@ -128,7 +139,13 @@ export function Navbar() {
                 render={
                   <Link
                     href="/#contact"
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      trackEvent("cta_click", {
+                        cta_label: "Book Consultation",
+                        cta_location: "navbar_mobile",
+                      });
+                    }}
                   />
                 }
                 nativeButton={false}

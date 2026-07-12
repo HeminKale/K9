@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import { Poppins, Inter } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
+import { Analytics } from "@/components/Analytics";
 import { BackToTop } from "@/components/BackToTop";
 import { FloatingButtons } from "@/components/FloatingButtons";
-import { business } from "@/lib/constants";
+import { business, services } from "@/lib/constants";
 import { siteConfig } from "@/lib/siteConfig";
 
 const poppins = Poppins({
@@ -67,6 +68,19 @@ const localBusinessJsonLd = {
   sameAs: Object.values(business.social),
 };
 
+const serviceJsonLd = services.map((service) => ({
+  "@context": "https://schema.org",
+  "@type": "Service",
+  serviceType: service.title,
+  name: service.title,
+  description: service.description,
+  provider: {
+    "@type": "LocalBusiness",
+    name: business.name,
+  },
+  areaServed: business.address.city,
+}));
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -83,11 +97,10 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
         />
-        {/* Google Analytics Placeholder */}
-        {/* Add your GA4 tracking ID here in Phase 8 */}
-
-        {/* Microsoft Clarity Placeholder */}
-        {/* Add your Clarity tracking ID here in Phase 8 */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+        />
       </head>
       <body className="flex flex-col min-h-screen">
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
@@ -95,6 +108,7 @@ export default function RootLayout({
           <FloatingButtons />
           <BackToTop />
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );

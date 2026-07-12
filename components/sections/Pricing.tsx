@@ -5,6 +5,7 @@ import { Check, Star } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { trackEvent } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 import { pricingPlans } from "@/lib/constants";
 
@@ -98,7 +99,18 @@ export function Pricing() {
                   </ul>
 
                   <Button
-                    render={<a href="#contact" />}
+                    render={
+                      <a
+                        href="#contact"
+                        onClick={() =>
+                          trackEvent("cta_click", {
+                            cta_label: "Request Pricing",
+                            cta_location: "pricing",
+                            plan_name: name,
+                          })
+                        }
+                      />
+                    }
                     nativeButton={false}
                     className={cn(
                       "h-11 w-full rounded-lg text-sm font-semibold",
