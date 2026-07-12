@@ -12,6 +12,14 @@ import { Testimonials } from "@/components/sections/Testimonials";
 import { TrainingProcess } from "@/components/sections/TrainingProcess";
 import { WhyChooseUs } from "@/components/sections/WhyChooseUs";
 
+// SuccessGallery is shown on both the Home and Results tabs. Each instance
+// needs its own DOM id (duplicate `id` attributes are invalid HTML), so the
+// Home copy gets a distinct section id via this wrapper — content/layout are
+// identical, only the id differs.
+function SuccessGalleryHome() {
+  return <SuccessGallery sectionId="gallery-home" />;
+}
+
 // Every section component, keyed by its section id. Content/props are
 // untouched — this is only a lookup so tabGroups below can reference
 // sections by id instead of importing components directly.
@@ -24,6 +32,7 @@ export const sectionComponents = {
   "before-after": BeforeAfter,
   testimonials: Testimonials,
   gallery: SuccessGallery,
+  "gallery-home": SuccessGalleryHome,
   faq: FAQ,
   pricing: Pricing,
   blog: Blog,
@@ -44,7 +53,7 @@ export type TabGroup = {
 // rename, or reshuffle `sections` here to change the grouping; no other file
 // needs to change.
 export const tabGroups: TabGroup[] = [
-  { id: "home", label: "Home", sections: ["hero"] },
+  { id: "home", label: "Home", sections: ["hero", "gallery-home"] },
   { id: "about", label: "About Us", sections: ["about", "why-choose-us"] },
   { id: "services", label: "Services", sections: ["services", "process"] },
   {
