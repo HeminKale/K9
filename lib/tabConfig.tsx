@@ -5,6 +5,7 @@ import { Contact } from "@/components/sections/Contact";
 import { FAQ } from "@/components/sections/FAQ";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Hero } from "@/components/sections/Hero";
+import { HomeHighlights } from "@/components/sections/HomeHighlights";
 import { Pricing } from "@/components/sections/Pricing";
 import { Services } from "@/components/sections/Services";
 import { SuccessGallery } from "@/components/sections/SuccessGallery";
@@ -25,6 +26,7 @@ function SuccessGalleryHome() {
 // sections by id instead of importing components directly.
 export const sectionComponents = {
   hero: Hero,
+  "home-highlights": HomeHighlights,
   about: About,
   "why-choose-us": WhyChooseUs,
   services: Services,
@@ -53,7 +55,7 @@ export type TabGroup = {
 // rename, or reshuffle `sections` here to change the grouping; no other file
 // needs to change.
 export const tabGroups: TabGroup[] = [
-  { id: "home", label: "Home", sections: ["hero", "gallery-home"] },
+  { id: "home", label: "Home", sections: ["hero", "home-highlights", "gallery-home"] },
   { id: "about", label: "About Us", sections: ["about", "why-choose-us"] },
   { id: "services", label: "Services", sections: ["services", "process"] },
   {

@@ -13,6 +13,7 @@ import {
   ShieldCheck,
   Sparkles,
   Star,
+  Target,
   Users,
 } from "lucide-react";
 
@@ -35,18 +36,18 @@ export const galleryItems: GalleryItem[] = [
 ];
 
 export const business = {
-  name: "[Name] Dog Training",
-  trainerName: "[Trainer Name]",
-  tagline: "Positive Reinforcement Dog Training That Builds Trust",
-  phone: "+1 (555) 123-4567",
-  phoneHref: "tel:+15551234567",
-  whatsappNumber: "15551234567",
+  name: "Ketan.K9DogTrainer",
+  trainerName: "Ketan Mahajan",
+  tagline: "Training Today, Better Tomorrow.",
+  phone: "+91 84461 29508",
+  phoneHref: "tel:+918446129508",
+  whatsappNumber: "918446129508",
   email: "hello@example.com",
   address: {
-    street: "123 Main Street",
-    city: "Your City",
-    state: "ST",
-    zip: "00000",
+    street: "Punawale",
+    city: "Pune",
+    state: "Maharashtra",
+    zip: "",
   },
   hours: [
     { day: "Monday - Friday", time: "8:00 AM - 6:00 PM" },
@@ -60,6 +61,67 @@ export const business = {
     tiktok: "https://tiktok.com/",
   },
 };
+
+export type HighlightPoint = {
+  title: string;
+  description: string;
+  icon: LucideIcon;
+};
+
+export const specializedTraining: HighlightPoint[] = [
+  {
+    title: "Obedience Training",
+    description: "Build a strong foundation. Sit, Stay, Come, Heel & more.",
+    icon: PawPrint,
+  },
+  {
+    title: "Puppy Training",
+    description: "Early training for good habits & a confident start.",
+    icon: Baby,
+  },
+  {
+    title: "Home Visit Training",
+    description: "Personalized training sessions for you & your dog's unique needs.",
+    icon: Home,
+  },
+];
+
+export const trainingApproach: HighlightPoint[] = [
+  {
+    title: "Calm & Positive",
+    description: "No fear. No force. Just trust & respect.",
+    icon: HeartHandshake,
+  },
+  {
+    title: "Focused on Results",
+    description: "Balanced training for obedience, behavior & real-life situations.",
+    icon: Target,
+  },
+  {
+    title: "Customized for Every Dog",
+    description: "Every dog is different. Every plan is tailored.",
+    icon: Sparkles,
+  },
+];
+
+export const trustStats = [
+  { label: "Happy Clients", value: "100+" },
+  { label: "Client Rating", value: "5.0" },
+];
+
+export type CertificatePlaceholder = {
+  id: string;
+  title: string;
+};
+
+// Placeholder slots for certification/credential images — swap in real
+// certificate photos here once available (see PLAN/PENDING_STEPS.md).
+export const certificates: CertificatePlaceholder[] = [
+  { id: "cert-1", title: "Certification 1" },
+  { id: "cert-2", title: "Certification 2" },
+  { id: "cert-3", title: "Certification 3" },
+  { id: "cert-4", title: "Certification 4" },
+];
 
 export type Service = {
   id: string;

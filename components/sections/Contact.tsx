@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { motion } from "framer-motion";
 import { Clock, Loader2, Mail, MapPin, Phone } from "lucide-react";
 
+import { CertificatesCarousel } from "@/components/CertificatesCarousel";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -123,7 +124,11 @@ export function Contact() {
           </p>
         </motion.div>
 
-        <div className="mt-12 grid gap-10 lg:grid-cols-5 lg:gap-12">
+        <div className="mt-12">
+          <CertificatesCarousel />
+        </div>
+
+        <div className="grid gap-10 lg:grid-cols-5 lg:gap-12">
           <motion.div
             initial="hidden"
             whileInView="visible"
