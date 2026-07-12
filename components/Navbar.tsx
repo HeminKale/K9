@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { Menu, Moon, PawPrint, Sun, X } from "lucide-react";
+import { Menu, Moon, Sun, X } from "lucide-react";
 import { useTheme } from "next-themes";
 
 import { useActiveTab } from "@/components/TabsProvider";
@@ -12,6 +13,7 @@ import { PaletteToggle } from "@/components/ui/PaletteToggle";
 import { TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { trackEvent } from "@/lib/analytics";
 import { business } from "@/lib/constants";
+import { images } from "@/lib/imageConfig";
 import { useHasMounted } from "@/lib/hooks/useHasMounted";
 import { tabGroups } from "@/lib/tabConfig";
 import { cn } from "@/lib/utils";
@@ -60,8 +62,14 @@ export function Navbar() {
           className="flex items-center gap-2 font-heading text-lg font-semibold text-primary-600 dark:text-primary-300"
           onClick={() => setActiveTab(tabGroups[0].id)}
         >
-          <PawPrint className="size-6" aria-hidden="true" />
-          <span>{business.name}</span>
+          <Image
+            src={images.logo.url}
+            alt={images.logo.alt}
+            width={32}
+            height={32}
+            className="rounded-full"
+          />
+          <span className="hidden sm:inline">{business.name}</span>
         </Link>
 
         <TabsList className="hidden md:flex">
