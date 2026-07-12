@@ -69,16 +69,9 @@ export function Hero() {
           animate="visible"
           className="mx-auto flex max-w-3xl flex-col items-center text-center"
         >
-          <motion.p
-            variants={fadeUp}
-            className="font-heading text-sm font-semibold uppercase tracking-widest text-accent-300"
-          >
-            {business.name}
-          </motion.p>
-
           <motion.h1
             variants={fadeUp}
-            className="mt-4 text-secondary-50"
+            className="text-secondary-50"
           >
             {business.tagline}
           </motion.h1>
