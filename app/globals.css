@@ -166,6 +166,73 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+/* Navy & Orange palette (survey alternative to the default Forest Green).
+   Light theme only — scoped with :not(.dark) so toggling dark mode always
+   falls back to the single existing dark-green theme above. */
+html[data-palette="navy"]:not(.dark) {
+  --color-primary-50: #eef1f5;
+  --color-primary-100: #d7dfe8;
+  --color-primary-200: #b0bfd1;
+  --color-primary-300: #849cb6;
+  --color-primary-400: #547397;
+  --color-primary-500: #2d5478;
+  --color-primary-600: #142c44;
+  --color-primary-700: #102338;
+  --color-primary-800: #0c1a2b;
+  --color-primary-900: #07111d;
+
+  --color-secondary-50: #fefdfc;
+  --color-secondary-100: #fbf7f3;
+  --color-secondary-200: #f3ece5;
+  --color-secondary-300: #ece1d5;
+  --color-secondary-400: #e1cfba;
+  --color-secondary-500: #d6bd9f;
+  --color-secondary-600: #cbab84;
+
+  --color-accent-50: #fff4ec;
+  --color-accent-100: #ffe3cc;
+  --color-accent-200: #ffc79a;
+  --color-accent-300: #ffab68;
+  --color-accent-400: #fa8c36;
+  --color-accent-500: #f36c05;
+  --color-accent-600: #d15d04;
+  --color-accent-700: #ae4d03;
+  --color-accent-800: #8b3e03;
+  --color-accent-900: #682e02;
+
+  --color-cta-50: #fff4ec;
+  --color-cta-100: #ffe3cc;
+  --color-cta-200: #ffc79a;
+  --color-cta-300: #ffab68;
+  --color-cta-400: #fa8c36;
+  --color-cta-500: #f36c05;
+  --color-cta-600: #d15d04;
+  --color-cta-700: #ae4d03;
+  --color-cta-800: #8b3e03;
+  --color-cta-900: #682e02;
+
+  --primary: #142c44;
+  --secondary: #f3ece5;
+  --accent: #d15d04;
+  --cta: #f36c05;
+  --background: #f8f9fb;
+  --card: #fefdfc;
+  --popover: #fefdfc;
+  --primary-foreground: #f7f9fb;
+  --secondary-foreground: #2e2e2e;
+  --muted: #f3ece5;
+  --muted-foreground: #707066;
+  --accent-foreground: #2e2e2e;
+  --border: #e1cfba;
+  --input: #e1cfba;
+  --ring: #2d5478;
+
+  --shadow-sm: 0 2px 8px rgba(20, 44, 68, 0.08);
+  --shadow-md: 0 4px 12px rgba(20, 44, 68, 0.12);
+  --shadow-lg: 0 8px 24px rgba(20, 44, 68, 0.16);
+  --shadow-xl: 0 16px 40px rgba(20, 44, 68, 0.2);
+}
+
 /* Reset and base styles */
 @layer base {
   * {
@@ -182,6 +249,7 @@
     background-color: var(--background);
     color: var(--foreground);
     font-family: var(--font-sans);
+    font-size: 1.125rem;
     line-height: 1.6;
     transition: background-color 0.3s ease, color 0.3s ease;
     -webkit-font-smoothing: antialiased;
@@ -195,19 +263,19 @@
   }
 
   h1 {
-    font-size: clamp(2rem, 5vw, 3.75rem);
+    font-size: clamp(2.25rem, 5.5vw, 4rem);
   }
 
   h2 {
-    font-size: clamp(1.875rem, 4vw, 3rem);
+    font-size: clamp(2rem, 4.5vw, 3.25rem);
   }
 
   h3 {
-    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-size: clamp(1.625rem, 3.5vw, 2.5rem);
   }
 
   h4 {
-    font-size: clamp(1.25rem, 2.5vw, 1.875rem);
+    font-size: clamp(1.375rem, 3vw, 2rem);
   }
 
   /* Links */

@@ -8,6 +8,7 @@ import { useTheme } from "next-themes";
 
 import { useActiveTab } from "@/components/TabsProvider";
 import { Button } from "@/components/ui/button";
+import { PaletteToggle } from "@/components/ui/PaletteToggle";
 import { TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { trackEvent } from "@/lib/analytics";
 import { business } from "@/lib/constants";
@@ -72,6 +73,7 @@ export function Navbar() {
         </TabsList>
 
         <div className="hidden items-center gap-3 md:flex">
+          {mounted && <PaletteToggle />}
           {mounted && (
             <Button
               variant="ghost"
@@ -140,6 +142,9 @@ export function Navbar() {
               >
                 Book Consultation
               </Button>
+              {mounted && (
+                <PaletteToggle className="w-full justify-center border border-secondary-300 dark:border-primary-700" />
+              )}
               {mounted && (
                 <Button
                   variant="outline"
