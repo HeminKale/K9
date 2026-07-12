@@ -17,6 +17,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { trackEvent } from "@/lib/analytics";
 import { business } from "@/lib/constants";
 import {
   contactFormSchema,
@@ -80,16 +81,19 @@ export function Contact() {
           message:
             data?.message ?? "Something went wrong. Please try again or contact us directly.",
         });
+        trackEvent("contact_form_submit", { status: "error", reason: "api_error" });
         return;
       }
 
       setSubmitState({ status: "success", message: data.message });
+      trackEvent("contact_form_submit", { status: "success" });
       reset();
     } catch {
       setSubmitState({
         status: "error",
         message: "Network error — please check your connection and try again.",
       });
+      trackEvent("contact_form_submit", { status: "error", reason: "network_error" });
     }
   };
 

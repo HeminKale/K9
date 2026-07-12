@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 
 import { Button } from "@/components/ui/button";
+import { trackEvent } from "@/lib/analytics";
 import { services } from "@/lib/constants";
 
 const fadeUp = {
@@ -69,7 +70,18 @@ export function Services() {
                   {description}
                 </p>
                 <Button
-                  render={<a href="#" />}
+                  render={
+                    <a
+                      href="#"
+                      onClick={() =>
+                        trackEvent("cta_click", {
+                          cta_label: "Learn More",
+                          cta_location: "services",
+                          service_title: title,
+                        })
+                      }
+                    />
+                  }
                   nativeButton={false}
                   variant="outline"
                   className="mt-2 h-10 w-fit rounded-lg border-primary-300 px-5 text-sm font-semibold text-primary-600 hover:bg-primary-100 dark:border-primary-600 dark:text-primary-200 dark:hover:bg-primary-700"

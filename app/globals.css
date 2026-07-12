@@ -52,7 +52,7 @@
   --color-text-200: #e8e8e5;
   --color-text-300: #d6d6d1;
   --color-text-400: #a5a59d;
-  --color-text-500: #737369;
+  --color-text-500: #707066;
   --color-text-600: #2e2e2e;
   --color-text-700: #262626;
   --color-text-800: #1f1f1f;
@@ -109,7 +109,7 @@
   --primary-foreground: #fcfaf7;
   --secondary-foreground: #2e2e2e;
   --muted: #f5f1e8;
-  --muted-foreground: #737369;
+  --muted-foreground: #707066;
   --accent-foreground: #2e2e2e;
   --destructive: oklch(0.577 0.245 27.325);
   --border: #e5ddc8;

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { PawPrint, Phone } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { trackEvent } from "@/lib/analytics";
 import { business } from "@/lib/constants";
 
 const fadeUp = {
@@ -51,14 +52,34 @@ export function FinalCTA() {
 
           <div className="mt-8 flex flex-col gap-4 sm:flex-row">
             <Button
-              render={<a href="#contact" />}
+              render={
+                <a
+                  href="#contact"
+                  onClick={() =>
+                    trackEvent("cta_click", {
+                      cta_label: "Book Consultation",
+                      cta_location: "final_cta",
+                    })
+                  }
+                />
+              }
               nativeButton={false}
               className="h-12 rounded-xl bg-cta-500 px-8 text-base font-semibold text-text-900 hover:bg-cta-600"
             >
               Book Consultation
             </Button>
             <Button
-              render={<a href={business.phoneHref} />}
+              render={
+                <a
+                  href={business.phoneHref}
+                  onClick={() =>
+                    trackEvent("cta_click", {
+                      cta_label: "Call Today",
+                      cta_location: "final_cta",
+                    })
+                  }
+                />
+              }
               nativeButton={false}
               variant="outline"
               className="h-12 gap-2 rounded-xl border-secondary-100/40 bg-transparent px-8 text-base font-semibold text-secondary-50 hover:bg-secondary-50/10"
