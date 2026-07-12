@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { PawPrint, Phone } from "lucide-react";
 
+import { useActiveTab } from "@/components/TabsProvider";
 import { Button } from "@/components/ui/button";
 import { trackEvent } from "@/lib/analytics";
 import { business } from "@/lib/constants";
@@ -17,6 +18,8 @@ const fadeUp = {
 };
 
 export function FinalCTA() {
+  const { setActiveTab } = useActiveTab();
+
   return (
     <section
       id="final-cta"
@@ -52,18 +55,13 @@ export function FinalCTA() {
 
           <div className="mt-8 flex flex-col gap-4 sm:flex-row">
             <Button
-              render={
-                <a
-                  href="#contact"
-                  onClick={() =>
-                    trackEvent("cta_click", {
-                      cta_label: "Book Consultation",
-                      cta_location: "final_cta",
-                    })
-                  }
-                />
-              }
-              nativeButton={false}
+              onClick={() => {
+                setActiveTab("contact");
+                trackEvent("cta_click", {
+                  cta_label: "Book Consultation",
+                  cta_location: "final_cta",
+                });
+              }}
               className="h-12 rounded-xl bg-cta-500 px-8 text-base font-semibold text-text-900 hover:bg-cta-600"
             >
               Book Consultation

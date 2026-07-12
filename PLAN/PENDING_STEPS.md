@@ -91,3 +91,27 @@ Not blocking any phase, but worth fixing before launch:
   `123 Main Street`, etc.).
 - `siteConfig.url` and `siteConfig.ogImage` — placeholder domain and a
   non-existent `/og-image.jpg`.
+
+## Tab-Design variant (branch `Tab-Design`, for the A/B survey)
+
+This branch is a second copy of the site with true tab navigation instead of
+one long scrolling page, built for a side-by-side survey against `SEO-Design`.
+Content/section internals were not touched — only how they're grouped and
+displayed changed.
+
+- [ ] **Final tab grouping** — `lib/tabConfig.ts`'s `tabGroups` array currently
+      holds a draft grouping (Home / About Us / Services / Results /
+      Pricing & FAQ / Contact). Send over the real content-to-tab mapping you
+      want and it's a small edit to that one file — no other file needs to
+      change.
+- [ ] **Where to upload photos/videos** — not implemented yet on either
+      branch (every section still uses gradient-placeholder blocks). Two
+      options once you have real files:
+  - **Simple**: drop them in `public/` (e.g. `public/images/hero.jpg`) and
+    reference as `/images/hero.jpg` via `next/image`.
+  - **Cloudinary** (already an installed dependency, `next-cloudinary`):
+    upload to a Cloudinary account, reference via the `CldImage`/
+    `CldVideoPlayer` components, and add `res.cloudinary.com` to
+    `next.config.ts`'s `images.remotePatterns`.
+  Either path is a separate follow-up task and can be wired into whichever
+  branch wins the survey.

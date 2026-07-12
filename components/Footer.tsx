@@ -1,12 +1,16 @@
+"use client";
+
 import Link from "next/link";
 import { Mail, MapPin, PawPrint, Phone } from "lucide-react";
 
+import { useActiveTab } from "@/components/TabsProvider";
 import { FacebookIcon, InstagramIcon, YoutubeIcon } from "@/components/icons/SocialIcons";
 import { business } from "@/lib/constants";
-import { footerLinks } from "@/lib/navLinks";
+import { tabGroups } from "@/lib/tabConfig";
 
 export function Footer() {
   const year = new Date().getFullYear();
+  const { setActiveTab } = useActiveTab();
 
   return (
     <footer className="border-t border-secondary-300 bg-secondary-100 dark:border-primary-800 dark:bg-primary-900">
@@ -58,14 +62,15 @@ export function Footer() {
             Quick Links
           </h3>
           <ul className="mt-4 space-y-2">
-            {footerLinks.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
+            {tabGroups.map((group) => (
+              <li key={group.id}>
+                <button
+                  type="button"
+                  onClick={() => setActiveTab(group.id)}
                   className="text-sm text-text-500 hover:text-primary-600 dark:text-text-300 dark:hover:text-primary-300"
                 >
-                  {link.label}
-                </Link>
+                  {group.label}
+                </button>
               </li>
             ))}
           </ul>
